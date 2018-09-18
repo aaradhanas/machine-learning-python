@@ -27,6 +27,8 @@ y = dataset.iloc[:, 3].values
 # Imputation transformer for completing missing values
 from sklearn.preprocessing import Imputer
 imputer = Imputer( missing_values = 'NaN', strategy = 'mean', axis = 0)
+
+# fit method enables the imputer to learn the parameters which will be applied during transform
 imputer = imputer.fit(X[:, 1:3])
 # Replaces the NaN values with valid values using the mentioned strategy (here, it is mean)
 X[:, 1:3] =  imputer.transform(X[:, 1:3])
@@ -52,3 +54,15 @@ X = onehotencoder.fit_transform(X).toarray()
 
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
+
+
+# SPLITTING THE DATASET INTO TRAINING SET AND TEST SET
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# FEATURE SCALING
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
