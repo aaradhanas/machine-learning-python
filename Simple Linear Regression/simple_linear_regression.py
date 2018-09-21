@@ -32,5 +32,25 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
+# The equation of the linear regression can be got by: regressor.intercept_ + regressor.coef_ * x
+# In this case, the equation is y = 26816.192244031176 + 9345.94244312 * x
+
 # Predicting the test results
 y_pred = regressor.predict(X_test)
+
+# Visualizing the training set results
+plt.scatter(X_train, y_train, color = 'red')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Experience VS Salary (Training set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
+
+
+# Visualizing the test set results
+plt.scatter(X_test, y_test, color = 'red')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Experience VS Salary (Test set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
