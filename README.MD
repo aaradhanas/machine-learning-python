@@ -38,3 +38,15 @@ The goal of the alogrithm is to minimize this error.
 - Multivariate normality
 - Independence of errors
 - Lack of multicollinearity
+
+## Multiple Linear Regression
+
+Multiple Linear Regression is an algorithm where there is one dependent variable and multiple independent variables. The machine learns the correlation between these variables and then predicts the value of the independent variable given the dependent variables. The mathematical equation goes like this:
+
+<code> y = b0 + b1 * x1 + b2 * x2 + b3 * x3 + ...... + bn * xn </code>
+
+where,  
+    b0 is the constant,  
+    b1, b2, b3,..., bn are the coefficients,  
+    x1, x2, x3,...,xn are independent variables &  
+    y is the dependent variable
