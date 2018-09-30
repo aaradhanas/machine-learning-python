@@ -67,9 +67,17 @@ https://www.youtube.com/watch?v=qrWx3OjZL3o&t=321s
 
 P value is a statistical measure that helps scientists determine whether or not their hypotheses are correct. P values are used to determine whether the results of their experiment are within the normal range of values for the events being observed.
 
+- The P-Value is a value that each indepedent variable has
+
+- For independent variable X, its P-Value is the probability of getting your specific prediction model when assuming that the X has no effect
+
+- It is good for X to have a low P-Value because this means that there is a low probability of getting your specific prediction model when assuming that X has no effect. Hence, it is more likely that X does indeed have an effect on your specific prediction model.
+
+- So variables with a low P-value must be included as it is very likely that they have a significant effect on the end prediction model.
+
 References:    
 https://www.mathbootcamps.com/what-is-a-p-value/  
-https://www.wikihow.com/Calculate-P-Value  
+https://www.wikihow.com/Calculate-P-Value   
 
 
 ### Building a Model
@@ -77,19 +85,34 @@ https://www.wikihow.com/Calculate-P-Value
 While bulding a model, it is necessary to choose the right features to be included rather than including all of them. There are 5 methods of how to come up with the correct set of features and  build a multiple linear regression model:
 
 1. **All-in**  
-You include all the features. This happens when you have prior domain knowlege or when you are preparing for backward elimination.
+You include all the features. This could happend when you have prior domain knowlege or when you are preparing for backward elimination.
 
 2. **Backward Elimination**  
 
-Step 1: Select a significance level to stay in the model (eg. SL = 0.05)  
-Step 2: Fit the full model with all possible predictors  
-Step 3: Consider the predictor with the highest P-value. If P > SL, go to Step 4, otherwise finish (model is ready)  
-Step 4: Remove the predictor  
-Step 5: Refit the model with the new set of predictors. Go to Step 3.  
+ Step 1: Select a significance level to stay in the model (eg. SL = 0.05)  
+ Step 2: Fit the full model with all possible predictors  
+ Step 3: Consider the predictor with the highest P-value. If P > SL, go to Step 4, otherwise finish (model is ready)  
+ Step 4: Remove the predictor  
+ Step 5: Refit the model with the new set of predictors. Go to Step 3.  
+
+ Back Elimination is the fastest of all methods.
 
 3. **Forward Selection**
 
-Step 1: Select a significance level to enter the model (eg. SL = 0.05)  
-Step 2: Fit all simple regression models (y with x1, y with x2,y with x3,...., y with xn). Select the one with the lowest P-value  
-Step 3: Keep this variable and fit all possible models with one extra predictor along with this selected variable. For example, if the selected variable is x1, fit all possible models (x1 & x2, x1 & x3, x1 & x4, and so on)  
-Step 4: Consider the predictor with the lowest P-value. If P < SL, go to Step 3, otherwise finish (keep the previous model)
+ Step 1: Select a significance level to enter the model (eg. SL = 0.05)  
+ Step 2: Fit all simple regression models (y with x1, y with x2,y with x3,...., y with xn). Select the one with the lowest P-value  
+ Step 3: Keep this variable(s) and fit all possible models with one extra predictor along with this selected variable(s). For example, if the selected variable is x1, fit all possible models (x1 & x2, x1 & x3, x1 & x4, and so on)  
+ Step 4: Consider the predictor with the lowest P-value. If P < SL, go to Step 3, otherwise finish (keep the previous model)
+
+4. **Bidirectional Elimination** (Step wise Regression)
+
+ Step 1: Select a significance level to enter and stay in the model (eg. SLENTER = 0.05, SLSTAY = 0.05) 
+ Step 2: Perform next step of Forward Selection (new variables must have P < SLENTER to enter)  
+ Step 3: Perform ALL the steps of Backward Elimination (old variables must have P < SLSTAY to stay). Go to Step 2.   
+ Step 4: When no new variables can enter and no old variables can exit, the model is ready  
+
+5. **All Possible Models** (Score Comparison)
+
+ Step 1: Select a criterion of goodness of fit (eg. [Akaike Criterion](https://en.wikipedia.org/wiki/Akaike_information_criterion))    
+ Step 2: Construct all possible regression models: 2^(N-1) combinations for N features  
+ Step 3: Select the one with the best criterion and the model is ready  
